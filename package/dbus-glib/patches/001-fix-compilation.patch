@@ -1,0 +1,118 @@
+From 073ede08a93203704a99180f21dadb0bd8903420 Mon Sep 17 00:00:00 2001
+From: Kishan Gondaliya <kishanpgondaliya@gmail.com>
+Date: Mon, 31 May 2021 16:44:44 +0530
+Subject: [PATCH] change
+
+---
+ Makefile.am       |  4 ++--
+ Makefile.in       |  4 ++--
+ configure.ac      | 12 ------------
+ dbus/Makefile.am  |  2 +-
+ dbus/Makefile.in  |  2 +-
+ tools/Makefile.am |  9 ++-------
+ 6 files changed, 8 insertions(+), 25 deletions(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index 4af8af3..04a904e 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -1,8 +1,8 @@
+ ACLOCAL_AMFLAGS = -I m4
+ GLIB_PC=dbus-glib-1.pc
+ 
+-SUBDIRS = dbus-gmain dbus tools test doc
+-DIST_SUBDIRS = dbus-gmain dbus tools test doc m4
++SUBDIRS = dbus-gmain dbus tools
++DIST_SUBDIRS = dbus-gmain dbus tools m4
+ 
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = $(GLIB_PC)
+diff --git a/Makefile.in b/Makefile.in
+index e2fd272..59fda4c 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -416,8 +416,8 @@ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ ACLOCAL_AMFLAGS = -I m4
+ GLIB_PC = dbus-glib-1.pc
+-SUBDIRS = dbus-gmain dbus tools test doc
+-DIST_SUBDIRS = dbus-gmain dbus tools test doc m4
++SUBDIRS = dbus-gmain dbus
++DIST_SUBDIRS = dbus-gmain dbus tools m4
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = $(GLIB_PC)
+ DISTCLEANFILES = \
+diff --git a/configure.ac b/configure.ac
+index 6d19683..5e1aa6a 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -297,20 +297,8 @@ AH_BOTTOM([
+ AC_CONFIG_FILES([
+ Makefile
+ m4/Makefile
+-doc/Makefile
+-doc/dbus-binding-tool.1
+-doc/reference/Makefile
+-doc/reference/version.xml
+ dbus/Makefile
+-dbus/examples/Makefile
+-dbus/examples/statemachine/Makefile
+ dbus-gmain/Makefile
+-test/Makefile
+-test/core/Makefile
+-test/interfaces/Makefile
+-test/data/valid-service-files/debug-glib.service
+-test/data/valid-service-files/debug-echo.service
+-test/data/valid-service-files/interfaces-test.service
+ tools/Makefile
+ dbus-glib-1.pc
+ dbus-glib-1-uninstalled.pc
+diff --git a/dbus/Makefile.am b/dbus/Makefile.am
+index 2e8cb27..a86df30 100644
+--- a/dbus/Makefile.am
++++ b/dbus/Makefile.am
+@@ -1,4 +1,4 @@
+-SUBDIRS = . examples
++SUBDIRS = .
+ 
+ AM_CPPFLAGS = \
+ 	-I$(top_srcdir)						\
+diff --git a/dbus/Makefile.in b/dbus/Makefile.in
+index b313096..13251d8 100644
+--- a/dbus/Makefile.in
++++ b/dbus/Makefile.in
+@@ -627,7 +627,7 @@ target_alias = @target_alias@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+-SUBDIRS = . examples
++SUBDIRS = .
+ AM_CPPFLAGS = \
+ 	-I$(top_srcdir)						\
+ 	-I$(top_builddir)					\
+diff --git a/tools/Makefile.am b/tools/Makefile.am
+index b032229..c59ad64 100644
+--- a/tools/Makefile.am
++++ b/tools/Makefile.am
+@@ -7,16 +7,11 @@ AM_CPPFLAGS = \
+ 	-DDBUS_COMPILATION \
+ 	$(NULL)
+ 
+-nodist_libdbus_glib_HEADERS = dbus-glib-bindings.h
+ libdbus_glibdir = $(includedir)/dbus-1.0/dbus
+ 
+-dbus-glib-bindings.h: $(top_srcdir)/dbus-bus-introspect.xml $(top_builddir)/dbus/dbus-binding-tool$(EXEEXT)
+-	$(DBUS_BINDING_TOOL) --mode=glib-client --prefix=dbus_bus --output=dbus-glib-bindings.h $(top_srcdir)/dbus-bus-introspect.xml
+-
+-BUILT_SOURCES = dbus-glib-bindings.h
++BUILT_SOURCES =
+ 
+ EXTRA_DIST = run-with-tmp-session-bus.sh session.conf
+ 
+ CLEANFILES = 				\
+-	run-with-tmp-session-bus.conf   \
+-        dbus-glib-bindings.h
++	run-with-tmp-session-bus.conf
+-- 
+2.25.1
+

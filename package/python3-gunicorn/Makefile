@@ -7,7 +7,7 @@
 
 include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/package.mk
-include ../../feeds/packages/lang/python/python3-package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
 PKG_NAME:=gunicorn3
 PKG_VERSION:=20.1.0
@@ -17,7 +17,7 @@ PKG_SOURCE:=gunicorn-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://files.pythonhosted.org/packages/source/g/gunicorn
 PKG_HASH:=e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(BUILD_VARIANT)-gunicorn3-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/python3-gunicorn-$(PKG_VERSION)
 
 PKG_UNPACK:=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xzf $(DL_DIR)/$(PKG_SOURCE)
 
@@ -60,7 +60,9 @@ define Package/gunicorn3/install
 		$(PKG_INSTALL_DIR)/usr/bin/gunicorn \
 		$(1)/usr/bin/gunicorn3
 	$(LN) gunicorn3 $(1)/usr/bin/gunicorn
-	$(call Python3/FixShebang,$(1)/usr/bin/*)
+	# fix python exec path in scripts
+	$(SED) 's/#!.*/#!\/usr\/bin\/python3/g' $(1)/usr/bin/gunicorn*
+	#$(call Python3/FixShebang,$(1)/usr/bin/*)
 endef
 
 $(eval $(call Py3Package,python3-gunicorn))

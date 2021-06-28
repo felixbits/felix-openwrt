@@ -13,17 +13,13 @@ PKG_NAME:=bluezero
 PKG_VERSION:=0.6.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=bluezero-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://files.pythonhosted.org/packages/source/b/bluezero
-PKG_HASH:=skip
-
-PKG_MAINTAINER:=Kishan Go. <kishanpgondaliya@gmail.com>
-PKG_LICENSE:=GNU 2.0
-PKG_LICENSE_FILES:=COPYING
+#PKG_SOURCE:=bluezero-$(PKG_VERSION).tar.gz
+#PKG_SOURCE_URL:=https://files.pythonhosted.org/packages/source/b/bluezero
+#PKG_HASH:=d94f0672b1de3ff0040801538143fe9a42c501d8db79bcd183c9e051b8da83bc
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/bluezero-$(PKG_VERSION)
 
-PKG_UNPACK:=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xzf $(DL_DIR)/$(PKG_SOURCE)
+#PKG_UNPACK:=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xzf $(DL_DIR)/$(PKG_SOURCE)
 
 define Package/bluezero
   SUBMENU:=Python
@@ -32,6 +28,11 @@ define Package/bluezero
   TITLE:=Python wrapper for ble
   DEPENDS:=+python3-light +dbus-python
   VARIANT:=python3
+endef
+
+define Build/Prepare
+	mkdir -p $(PKG_BUILD_DIR)
+	$(CP) ./src/* $(PKG_BUILD_DIR)/
 endef
 
 define Package/bluezero/description

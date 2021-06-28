@@ -24,7 +24,7 @@ define Package/python-gattlib
   SECTION:=lang
   CATEGORY:=Languages
   TITLE:=Python Gattlib
-  DEPENDS:=+python3 +bluez-libs +glib2 +libstdcpp +boost-python3 +boost-thread
+  DEPENDS:=+python3 +bluez-libs +glib2 +libstdcpp +boost-python3 +boost-thread +boost
   VARIANT:=python3
 endef
 

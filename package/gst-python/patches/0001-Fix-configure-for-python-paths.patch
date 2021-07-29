@@ -1,0 +1,100 @@
+--- a/configure
++++ b/configure
+@@ -14106,19 +14106,22 @@ $as_echo_n "checking for headers required to compile python extensions... " >&6;
+ py_prefix=`$PYTHON -c "import sys; print(sys.prefix)"`
+ py_exec_prefix=`$PYTHON -c "import sys; print(sys.exec_prefix)"`
+ if $PYTHON-config --help 1>/dev/null 2>/dev/null; then
+-  PYTHON_INCLUDES=`$PYTHON-config --includes 2>/dev/null`
++  #PYTHON_INCLUDES=`$PYTHON-config --includes 2>/dev/null`
+   if $PYTHON-config --abiflags 1>/dev/null 2>/dev/null; then
+     PYTHON_ABI_FLAGS=`$PYTHON-config --abiflags 2>/dev/null`
+   else
+     PYTHON_ABI_FLAGS=
+   fi
+-else
+-  PYTHON_INCLUDES="-I${py_prefix}/include/python${PYTHON_VERSION}"
+-  if test "$py_prefix" != "$py_exec_prefix"; then
+-    PYTHON_INCLUDES="$PYTHON_INCLUDES -I${py_exec_prefix}/include/python${PYTHON_VERSION}"
+-  fi
++#else
++  #PYTHON_INCLUDES="-I${py_prefix}/include/python${PYTHON_VERSION}"
++  #if test "$py_prefix" != "$py_exec_prefix"; then
++  #  PYTHON_INCLUDES="$PYTHON_INCLUDES -I${py_exec_prefix}/include/python${PYTHON_VERSION}"
++  #fi
+ fi
+ 
++#if test -n "$PYTHON_INCLUDES"; then :
++#  PYTHON_CPPFLAGS="$PYTHON_CPPFLAGS $PYTHON_INCLUDES"
++#fi
+ save_CPPFLAGS="$CPPFLAGS"
+ CPPFLAGS="$CPPFLAGS $PYTHON_INCLUDES"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+@@ -14463,37 +14466,37 @@ fi
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for libraries required to embed python" >&5
+ $as_echo_n "checking for libraries required to embed python... " >&6; }
+ 
+-if $PYTHON-config --help 1>/dev/null 2>/dev/null; then
+-  PYTHON_LIBS=`$PYTHON-config --ldflags 2>/dev/null`
+-  PYTHON_LIB=`$PYTHON -c "import distutils.sysconfig as s; print(s.get_python_lib(standard_lib=1))"`
+-  if echo "$host_os" | grep darwin >/dev/null 2>&1; then
+-                PYTHON_LIB_LOC=/usr/lib
+-  else
+-    PYTHON_LIB_LOC=$PYTHON_LIB/config
+-
+-    # default to prefix/lib for distros that don't have a link in
+-    # .../pythonX.Y/config/
+-    if test ! -e $PYTHON_LIB_LOC/libpython${PYTHON_VERSION}${PYTHON_ABI_FLAGS}.so; then
+-      if test -e ${py_prefix}/lib64/libpython${PYTHON_VERSION}${PYTHON_ABI_FLAGS}.so; then
+-        PYTHON_LIB_LOC=${py_prefix}/lib64
+-      else
+-        PYTHON_LIB_LOC=${py_prefix}/lib
+-      fi
+-    fi
+-  fi
+-else
+-  PYTHON_LIBS="-L${py_prefix}/lib -lpython${PYTHON_VERSION}"
+-  PYTHON_LIB_LOC="${py_prefix}/lib"
+-fi
++#if $PYTHON-config --help 1>/dev/null 2>/dev/null; then
++#  PYTHON_LIBS=`$PYTHON-config --ldflags 2>/dev/null`
++#  PYTHON_LIB=`$PYTHON -c "import distutils.sysconfig as s; print(s.get_python_lib(standard_lib=1))"`
++#  if echo "$host_os" | grep darwin >/dev/null 2>&1; then
++#                PYTHON_LIB_LOC=/usr/lib
++#  else
++#    PYTHON_LIB_LOC=$PYTHON_LIB/config
++#
++#    # default to prefix/lib for distros that don't have a link in
++#    # .../pythonX.Y/config/
++#    if test ! -e $PYTHON_LIB_LOC/libpython${PYTHON_VERSION}${PYTHON_ABI_FLAGS}.so; then
++#      if test -e ${py_prefix}/lib64/libpython${PYTHON_VERSION}${PYTHON_ABI_FLAGS}.so; then
++#        PYTHON_LIB_LOC=${py_prefix}/lib64
++#      else
++#        PYTHON_LIB_LOC=${py_prefix}/lib
++#      fi
++#    fi
++#  fi
++#else
++#  PYTHON_LIBS="-L${py_prefix}/lib -lpython${PYTHON_VERSION}"
++#  PYTHON_LIB_LOC="${py_prefix}/lib"
++#fi
+ 
+ 
+ # Check whether --with-libpython-dir was given.
+-if test "${with_libpython_dir+set}" = set; then :
+-  withval=$with_libpython_dir;
+-    PYTHON_LIB_LOC=`echo "$withval" | sed -e 's/\/$//g'`
+-
+-
+-fi
++#if test "${with_libpython_dir+set}" = set; then :
++#  withval=$with_libpython_dir;
++#    PYTHON_LIB_LOC=`echo "$withval" | sed -e 's/\/$//g'`
++#
++#
++#fi
+ 
+ 
+ if echo "$host_os" | grep darwin >/dev/null 2>&1; then
+-- 
+2.25.1
+

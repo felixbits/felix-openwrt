@@ -1,0 +1,32 @@
+From a5cf2092c96b4b0bda60c2d76ccbc4464add2396 Mon Sep 17 00:00:00 2001
+From: Kishan Gondaliya <kishanpgondaliya@gmail.com>
+Date: Fri, 20 Aug 2021 11:25:23 +0530
+Subject: [PATCH] Add fix for short buffer
+
+---
+ src/urllib3/response.py | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/src/urllib3/response.py b/src/urllib3/response.py
+index 43a85ac..3dc6019 100644
+--- a/src/urllib3/response.py
++++ b/src/urllib3/response.py
+@@ -515,7 +515,14 @@ class HTTPResponse(io.IOBase):
+                 flush_decoder = True
+             else:
+                 cache_content = False
+-                data = self._fp.read(amt) if not fp_closed else b""
++
++                read1 = amt < 0
++
++                if read1:
++                    data = self._fp.read1() if not fp_closed else b""
++                else:
++                    data = self._fp.read(amt) if not fp_closed else b""
++
+                 if (
+                     amt != 0 and not data
+                 ):  # Platform-specific: Buggy versions of Python.
+-- 
+2.25.1
+

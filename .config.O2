@@ -2671,7 +2671,6 @@ CONFIG_PACKAGE_kmod-input-uinput=y
 #
 # LED modules
 #
-# CONFIG_PACKAGE_kmod-gpio-rgb-led is not set
 CONFIG_PACKAGE_kmod-leds-gpio=y
 # CONFIG_PACKAGE_kmod-leds-pca963x is not set
 CONFIG_PACKAGE_kmod-ledtrig-default-on=y
@@ -2935,7 +2934,7 @@ CONFIG_PACKAGE_kmod-wireguard=m
 # CONFIG_PACKAGE_kmod-ath3k is not set
 # CONFIG_PACKAGE_kmod-bcma is not set
 CONFIG_PACKAGE_kmod-bluetooth=y
-# CONFIG_PACKAGE_kmod-bluetooth_6lowpan is not set
+# CONFIG_PACKAGE_kmod-bluetooth-6lowpan is not set
 # CONFIG_PACKAGE_kmod-bmp085 is not set
 # CONFIG_PACKAGE_kmod-bmp085-i2c is not set
 # CONFIG_PACKAGE_kmod-bmp085-spi is not set
@@ -2950,7 +2949,6 @@ CONFIG_PACKAGE_kmod-dma-ralink=y
 # CONFIG_PACKAGE_kmod-gpio-beeper is not set
 CONFIG_PACKAGE_kmod-gpio-button-hotplug=y
 # CONFIG_PACKAGE_kmod-gpio-dev is not set
-# CONFIG_PACKAGE_kmod-gpio-irq is not set
 # CONFIG_PACKAGE_kmod-gpio-mcp23s08 is not set
 # CONFIG_PACKAGE_kmod-gpio-nxp-74hc164 is not set
 # CONFIG_PACKAGE_kmod-gpio-pca953x is not set
@@ -3149,7 +3147,7 @@ CONFIG_PACKAGE_kmod-w1-slave-therm=y
 # CONFIG_PACKAGE_kmod-cc2520 is not set
 # CONFIG_PACKAGE_kmod-fakelb is not set
 # CONFIG_PACKAGE_kmod-ieee802154 is not set
-# CONFIG_PACKAGE_kmod-ieee802154_6lowpan is not set
+# CONFIG_PACKAGE_kmod-ieee802154-6lowpan is not set
 # CONFIG_PACKAGE_kmod-mac802154 is not set
 # CONFIG_PACKAGE_kmod-mrf24j40 is not set
 
@@ -3335,8 +3333,6 @@ CONFIG_PACKAGE_node=m
 # CONFIG_PACKAGE_node-mozilla-iot-gateway is not set
 CONFIG_PACKAGE_node-npm=m
 # CONFIG_PACKAGE_node-serialport is not set
-# CONFIG_PACKAGE_nodejs is not set
-# CONFIG_PACKAGE_npm is not set
 
 #
 # PHP
@@ -4542,7 +4538,6 @@ CONFIG_PACKAGE_libxml2=m
 # CONFIG_PACKAGE_libyaml-cpp is not set
 # CONFIG_PACKAGE_libyang is not set
 # CONFIG_PACKAGE_libzdb is not set
-# CONFIG_PACKAGE_libzmq is not set
 # CONFIG_PACKAGE_libzmq-curve is not set
 # CONFIG_PACKAGE_libzmq-nc is not set
 # CONFIG_PACKAGE_linux-atm is not set
@@ -6107,6 +6102,7 @@ CONFIG_PACKAGE_wwan=m
 CONFIG_PACKAGE_omega2-base=y
 # CONFIG_PACKAGE_omega2-dash-base is not set
 # CONFIG_PACKAGE_omega2-lte-base is not set
+CONFIG_PACKAGE_omega2-usb-autorun=y
 CONFIG_PACKAGE_onion-repo-keys=y
 
 #
@@ -6139,15 +6135,12 @@ CONFIG_PACKAGE_relay-exp=y
 # CONFIG_PACKAGE_libduktape is not set
 CONFIG_PACKAGE_liboniondebug=y
 CONFIG_PACKAGE_libonioni2c=y
-# CONFIG_PACKAGE_libonionili9341 is not set
 CONFIG_PACKAGE_libonionmcp23008=y
 # CONFIG_PACKAGE_libonionneopixel is not set
 CONFIG_PACKAGE_libonionoledexp=y
 CONFIG_PACKAGE_libonionpwmexp=y
 CONFIG_PACKAGE_libonionrelayexp=y
 # CONFIG_PACKAGE_libonionspi is not set
-# CONFIG_PACKAGE_libonionst7735 is not set
-# CONFIG_PACKAGE_libv8m-rb is not set
 # CONFIG_PACKAGE_node-oled-exp is not set
 # CONFIG_PACKAGE_node-pwm-exp is not set
 # CONFIG_PACKAGE_node-relay-exp is not set
@@ -6161,7 +6154,6 @@ CONFIG_PACKAGE_pyOmegaExpansion=m
 CONFIG_PACKAGE_pyOnionGpio=m
 CONFIG_PACKAGE_pyOnionI2C=m
 # CONFIG_PACKAGE_pyOnionSpi is not set
-# CONFIG_PACKAGE_pyOnionSt7735 is not set
 CONFIG_PACKAGE_pyPwmExp=m
 CONFIG_PACKAGE_pyRelayExp=m
 CONFIG_PACKAGE_python-adc-exp=m
@@ -6177,13 +6169,8 @@ CONFIG_PACKAGE_python3-spidev=m
 #
 # Network
 #
-# CONFIG_PACKAGE_device-client is not set
 CONFIG_PACKAGE_hostname-tool=y
 CONFIG_PACKAGE_ubidots-client=m
-# CONFIG_PACKAGE_wdb40 is not set
-# CONFIG_PACKAGE_wifimanager is not set
-# CONFIG_PACKAGE_wifisaint is not set
-# CONFIG_PACKAGE_wifisetup is not set
 
 #
 # Node-RED
@@ -6205,11 +6192,6 @@ CONFIG_PACKAGE_oos-app-sparkfun-qwiic=m
 CONFIG_PACKAGE_oos-app-timelapse-camera=m
 
 #
-# Ralink
-#
-# CONFIG_PACKAGE_ralink-wifi-mt76x8 is not set
-
-#
 # Utilities
 #
 CONFIG_PACKAGE_adc-exp=m
@@ -6219,10 +6201,8 @@ CONFIG_PACKAGE_arduino-dock-2=m
 CONFIG_PACKAGE_dht-sensor=m
 CONFIG_PACKAGE_fast-gpio=y
 # CONFIG_PACKAGE_gpio-test is not set
-# CONFIG_PACKAGE_ili9341-test is not set
 # CONFIG_PACKAGE_neopixel-tool is not set
 CONFIG_PACKAGE_nfc-exp=m
-# CONFIG_PACKAGE_o2-wifi is not set
 CONFIG_PACKAGE_ogps=m
 CONFIG_PACKAGE_omega2-ctrl=y
 CONFIG_PACKAGE_omega2-pro-base=y
@@ -6232,16 +6212,22 @@ CONFIG_PACKAGE_ethernet-mode=y
 CONFIG_PACKAGE_onion-ubus=y
 CONFIG_PACKAGE_oupgrade=y
 CONFIG_PACKAGE_p44-ledchain=y
-# CONFIG_PACKAGE_setup-wizard is not set
 # CONFIG_PACKAGE_spi-tool is not set
-# CONFIG_PACKAGE_st7735-test is not set
-# CONFIG_PACKAGE_ubus-intf is not set
 CONFIG_PACKAGE_url-enc-dec=y
 
 #
 # WiFi
 #
 CONFIG_PACKAGE_wifi-warp-core=y
+
+#
+# plan44
+#
+
+#
+# Utilities
+#
+CONFIG_PACKAGE_p44ledchaintest=m
 
 #
 # Sound
